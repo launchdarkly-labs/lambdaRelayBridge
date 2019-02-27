@@ -58,5 +58,5 @@ LambdaRelayBridge is a reference implementation that is intended to be used for 
 * In the API Gateway console, select your API --> Actions --> Deploy API --> Select appropriate stage
 * Once deployed, you can test out the API with the following command: `curl -i {api_endpoint}\{flag}\{user}`
 * * {api_endpoint} = Url for your API endpoint
-* * {api_endpoint} = Feature flag to be evaluated
-* * {api_endpoint} = User to be evaluated (base64 encoded)
+* * {flag} = Feature flag to be evaluated
+* * {user} = User to be evaluated (base64 encoded)
