@@ -45,9 +45,18 @@ LambdaRelayBridge is a reference implementation that is intended to be used for 
 ### Configuring the lambda function
 
 * Clone the repo locally `git clone https://github.com/launchdarkly/lambdaRelayBridge.git`
-* Select your Lambda function in the designer and under function code click on the dropdown for code entry type. Upload a .zip file and use the zip file downloaded from git
+* Within the repo, run the following command: `zip -r lambdaRelayBridge.zip *`
+* In AWS, select your Lambda function in the designer and under function code click on the dropdown for code entry type. Upload a .zip file and use the zip file you created
 * Set the following environment variables
 * * Key: DYNAMO_ACCESS_KEY || Value: *enter_access_key*
 * * Key: DYNAMO_SECRET_KEY || Value: *enter_secret_key*
 * * Key: DYNAMO_REGION || Value: *enter_dynamo_region*
 * * Key: SDK_KEY || Value: *enter_ld_sdk_key*
+
+### Deploying the API
+
+* In the API Gateway console, select your API --> Actions --> Deploy API --> Select appropriate stage
+* Once deployed, you can test out the API with the following command: `curl -i {api_endpoint}\{flag}\{user}`
+* * {api_endpoint} = Url for your API endpoint
+* * {api_endpoint} = Feature flag to be evaluated
+* * {api_endpoint} = User to be evaluated (base64 encoded)

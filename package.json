@@ -16,5 +16,6 @@
     "ldclient-node": "5.7.1",
     "ldclient-node-dynamodb-store": "1.1.4",
     "aws-sdk": "2.410.0"
-  }
+  },
+  "private": true
 }

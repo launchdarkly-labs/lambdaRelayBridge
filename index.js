@@ -24,7 +24,6 @@ function evaluate(event, context, callback) {
     console.log("here is my variation: " + variation);
     ldClient.flush();
     callback(null, {"statusCode": 200, "body": JSON.stringify(variation)})
-    //callback(null, variation)
   });
 }
 
