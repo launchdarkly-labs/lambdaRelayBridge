@@ -1,6 +1,11 @@
 # lambdaRelayBridge
 
-LambdaRelayBridge is a reference implementation that is intended to be used for querying the LaunchDarkly relay proxy so you can get back the variant for a given user based on a feature flag that is passed in. The function assumes that you have confiured your relay proxy + SDK clients to be running in [daemon mode](https://docs.launchdarkly.com/docs/using-a-persistent-feature-store#section-using-a-persistent-feature-store-without-connecting-to-launchdarkly) and that you are using DynamoDB as the feature store. This is ideally suited for use cases where LaunchDarkly does not provide a native sdk (i.e. Roku), you can invoke the lambda function from you application. This will in effect turn your application into a simple http client, where each request will call the lambda function, which will in turn scan the database + evaluate the user and the variant for the user will be returned.
+LambdaRelayBridge is a reference implementation that is intended to guide you through setting up a lambda function using the Node.js sdk in [daemon mode](https://docs.launchdarkly.com/docs/using-a-persistent-feature-store#section-using-a-persistent-feature-store-without-connecting-to-launchdarkly), in conjunction with using [DynamoDB](https://docs.launchdarkly.com/docs/using-a-persistent-feature-store#section-using-dynamodb) as the feature store. This will walk you through setting up an endpoint, where you can make the following GET requests:
+
+* {user} - Will return all flags for a given user (base64 encoded)
+* {user}/{featureFlag} - This will take in a user (base64 encoded) + feature flag, and will return the resulting variant for the user. 
+
+This is ideally suited for use cases where LaunchDarkly does not provide a native sdk (i.e. Roku), you can invoke the lambda function from within your application, and get the requested data.
 
 ## Setup 
 
@@ -38,7 +43,9 @@ LambdaRelayBridge is a reference implementation that is intended to be used for 
 * Select "AWS IAM", under the security section
 * "ANY" will be selected by default, click on Actions and select on "Delete Method"
 * While your API is selected, click on Actions and select Create Resource. Set the resource path to {user}
-* With the newly created {user} selected, click on Actions and select Create Resrouce. Set the resource path to {user}
+* Select the newly created {user} resource, click on Actions and select Create Method. Click on the dropdown and select GET
+* Once the method has been created, be sure to select "Use Lambda Proxy Integration" and in the Lambda Function box, enter the name of the newly created lambda function
+* Select {user}, click on Actions and select Create Resrouce. Set the resource path to {flag}
 * With the newly created {flag} selected, click on Actions and select Create Method. Click on the dropdown and select GET
 * Once the method has been created, be sure to select "Use Lambda Proxy Integration" and in the Lambda Function box, enter the name of the newly created lambda function
 
@@ -51,7 +58,8 @@ LambdaRelayBridge is a reference implementation that is intended to be used for 
 * * Key: DYNAMO_ACCESS_KEY || Value: *enter_access_key*
 * * Key: DYNAMO_SECRET_KEY || Value: *enter_secret_key*
 * * Key: DYNAMO_REGION || Value: *enter_dynamo_region*
-* * Key: SDK_KEY || Value: *enter_ld_sdk_key*
+* * Key: DYNAMO_TABLE_NAME || Value: *enter_dynamo_ld_table_name*
+* * Key: DYNAMO_LD_PREFIX || Value: *enter_dynamo_ld_prefix*
 
 ### Deploying the API
 
