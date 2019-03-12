@@ -16,19 +16,22 @@ function evaluate(event, context, callback) {
   const userBase64 = event.pathParameters.user;
   const userStr = atob(userBase64);
   const user = JSON.parse(userStr);
-  console.log("once ready called");
 
-  ldClient.variation(flagKey, user, false, function(err, variation) {
-    console.log("variation being performed");
-    if (variation === undefined) throw('unknown variation')
-    console.log("here is my variation: " + variation);
-    ldClient.flush();
-    callback(null, {"statusCode": 200, "body": JSON.stringify(variation)})
-  });
+  if(flagKey == "undefined"){
+    ldClient.allFlagsState(user, function(err, allFlags) {
+      ldClient.flush();
+      callback(null, {"statusCode": 200, "body": JSON.stringify(allFlags)})
+    })
+  } else {
+    ldClient.variation(flagKey, user, false, function(err, variation) {
+      if (variation === undefined) throw('unknown variation')
+      ldClient.flush();
+      callback(null, {"statusCode": 200, "body": JSON.stringify(variation)})
+    });
+  }
 }
 
 exports.handler = function (event, context, callback) {
-  if (!event.pathParameters.flag) throw('missing flag')
   if (!event.pathParameters.user) throw('missing user')
   
   context.callbackWaitsForEmptyEventLoop = false;

@@ -38,7 +38,7 @@ LambdaRelayBridge is a reference implementation that is intended to be used for 
 * Select "AWS IAM", under the security section
 * "ANY" will be selected by default, click on Actions and select on "Delete Method"
 * While your API is selected, click on Actions and select Create Resource. Set the resource path to {user}
-* With the newly created {user} selected, click on Actions and select Create Resrouce. Set the resource patht to {flag}
+* With the newly created {user} selected, click on Actions and select Create Resrouce. Set the resource path to {user}
 * With the newly created {flag} selected, click on Actions and select Create Method. Click on the dropdown and select GET
 * Once the method has been created, be sure to select "Use Lambda Proxy Integration" and in the Lambda Function box, enter the name of the newly created lambda function
 
