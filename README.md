@@ -55,6 +55,7 @@ This is ideally suited for use cases where LaunchDarkly does not provide a nativ
 ### Configuring the lambda function
 
 * Clone the repo locally `git clone https://github.com/launchdarkly/lambdaRelayBridge.git`
+* Within the repo, use either npm or brew to install the dependies from the package.json file
 * Within the repo, run the following command: `zip -r lambdaRelayBridge.zip *`
 * In the AWS Lambda Designer of your lambda function, under "Code entry type" select "Upload a .zip file" from the dropdown menu
 * Under "Function package", click "Upload", select the zip file you created, click "Open" then click "Save" (at the top right)
