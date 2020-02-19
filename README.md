@@ -60,8 +60,8 @@ This is ideally suited for use cases where LaunchDarkly does not provide a nativ
 * In the AWS Lambda Designer of your lambda function, under "Code entry type" select "Upload a .zip file" from the dropdown menu
 * Under "Function package", click "Upload", select the zip file you created, click "Open" then click "Save" (at the top right)
 * Set the following environment variables
-* * Key: DYNAMO_ACCESS_KEY || Value: *enter_access_key*
-* * Key: DYNAMO_SECRET_KEY || Value: *enter_secret_key*
+* * Key: DYNAMO_ACCESS_KEY || Value: *enter_access_key* -- note this is the same as the AWS_ACCESS_KEY_ID
+* * Key: DYNAMO_SECRET_KEY || Value: *enter_secret_key* -- note this is the same as the AWS_SECRET_ACCESS_KEY
 * * Key: DYNAMO_REGION || Value: *enter_dynamo_region*
 * * Key: DYNAMO_TABLE_NAME || Value: *enter_dynamo_ld_table_name*
 * * Key: SDK_KEY || Value: *enter_ld_sdk_key*
@@ -71,5 +71,5 @@ This is ideally suited for use cases where LaunchDarkly does not provide a nativ
 * In the API Gateway console, select your API --> Actions --> Deploy API --> Select appropriate stage
 * Once deployed, you can test out the API with the following command: `curl -i {api_endpoint}/{user}/{flag}`
 * * {api_endpoint} = Url for your API endpoint -- you can find this in the API Gateway under Stages as the "Invoke URL"
-* * {user} = User to be evaluated (base64 encoded)
+* * {user} = User to be evaluated (base64 encoded) -- note that this is the full user object/request context and not just the key value itself, e.g. {"key":"abc123"}, which is then base64 encoded
 * * {flag} = Feature flag to be evaluated
