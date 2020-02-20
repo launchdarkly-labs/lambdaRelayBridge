@@ -1,8 +1,8 @@
 const LaunchDarkly = require('ldclient-node');
 const atob = require('atob');
-const DynamoDBFeatureStore = require('ldclient-node-dynamodb-store');
+const DynamoDBFeatureStore = require('launchdarkly-node-server-sdk-dynamodb');
 const dynamoDBOptions = { region: process.env.DYNAMO_REGION, accessKeyId: process.env.DYNAMO_ACCESS_KEY, secretAccessKey: process.env.DYNAMO_SECRET_KEY};
-const store = DynamoDBFeatureStore(process.env.DYNAMO_TABLE_NAME, { clientOptions: dynamoDBOptions, prefix:process.env.DYNAMO_LD_PREFIX});
+const store = DynamoDBFeatureStore(process.env.DYNAMO_TABLE_NAME);
 const config = {
     featureStore: store,
     useLdd: true
