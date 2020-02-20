@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/launchdarkly/lambdaRelayBridge.git"
+    "url": "git+https://github.com/launchdarkly-labs/lambdaRelayBridge.git"
   },
-  "homepage": "https://github.com/launchdarkly/lambdaRelayBridge#readme",
+  "homepage": "https://github.com/launchdarkly-labs/lambdaRelayBridge#readme",
   "dependencies": {
     "atob": "2.1.2",
-    "ldclient-node": "5.7.1",
-    "ldclient-node-dynamodb-store": "1.1.4",
+    "launchdarkly-node-server-sdk": "5.10.2",
+    "launchdarkly-node-server-sdk-dynamodb": "1.1.7",
     "aws-sdk": "2.410.0"
   },
   "private": true
