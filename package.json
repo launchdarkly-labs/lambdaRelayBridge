@@ -15,7 +15,7 @@
     "atob": "2.1.2",
     "launchdarkly-node-server-sdk": "5.10.2",
     "launchdarkly-node-server-sdk-dynamodb": "1.1.7",
-    "aws-sdk": "2.410.0"
+    "aws-sdk": "2.1693.0"
   },
   "private": true
 }
